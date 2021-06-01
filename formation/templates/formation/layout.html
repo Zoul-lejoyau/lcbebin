@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le commandant BEBIN | {{ title }} </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css"
+    integrity="sha512-byErQdWdTqREz6DLAA9pCnLbdoGGhXfU6gm1c8bkf7F51JVmUBlayGe2A31VpXWQP+eiJ3ilTAZHCR3vmMyybA=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  <link rel="shortcut icon" href="{% static 'formation/favicon.svg' %}" type="image/x-icon">
+  
+  </head>
+
+<body>
+  <nav class="navbar is-link ">
+    <div class="navbar-brand">
+      <a href="/" class="navbar-item">
+        <strong>Le Commandant Benin</strong>
+      </a>
+      <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu"
+        @click="showMobileMenu = !showMobileMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <div class="navbar-item">
+          <form action="/search" method="get">
+            <div class="field has-addons">
+              <div class="control">
+                {% csrf_token %}
+                <input type="text" class="input" placeholder="whate are you looking for?" name="query" />
+              </div>
+              <div class="control">
+                <button class="button is-success">
+                  <span class="icon"><i class="fas fa-search"></i></span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="navbar-end">
+        <a href="{%url 'about'%}" class="navbar-item"> A propos</a>
+                <div class="navbar-item">
+          <div class="buttons">
+            {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}" class="button is-light">
+                <span class="icon"><i class="fas fa-user"></i></span>
+                <span>Profile</span>
+              </a> 
+               <a  href="{% url 'logout' %}" class="button is-light">Logout</a>         
+          {% else %}
+           <a href="{% url 'register' %}" class="button is-light">Register</a>
+           <a  href="{% url 'login' %}" class="button is-light">Login</a>  
+          {% endif %}
+
+          <a href="{% url 'blog-home' %}" class="button is-info">
+            <span class="icon"><i class="fas fa-blog"></i></span>
+            <span>Blog</span>
+          </a> 
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  </div>
+
+  {% block content %}
+  {% endblock %}
+
+
+
+
+
+  <footer class="footer has-background-link-light">
+    <div class="columns has-text-centered">
+      <div class="column ">
+
+        <a href="" target="_top"><img src="{% static 'formation/logo.jpg' %}" alt="LCBENIN" class="image is-64x64" ></a>
+      </div>
+      <div class="column has-text-centered">
+        <h4 class="">Programmeur et Designeur:</h4>
+        <p class="has-text-centered"> Besion d'une page web clicker
+          <a href="https://wa.me/message/WLD34FA4I2NND1" class="color is-info" target="_blank"> <i class="fab fa-whatsapp"></i> Ici</a>
+        </p>
+        <p class="has-text-centered">
+          <a href="https://www.facebook.com/lejoyau10/" target="_blank"> <i> Zoul lejoyau</i></a>
+          CopyRight &COPY; 2021
+        </p>
+
+      </div>
+      <div class="column">
+        <ul class="has-text-centered">
+          <li>
+            <a href="https://www.facebook.com/lescribe.max" target="blank"><i class="fab fa-facebook-f"> Page-Facebook
+              </i></a>
+          </li>
+          <li>
+            <a href="https://wa.me/message/STICJKB4GYXJF1" target="blank"><i class="fab fa-whatsapp"> Goupe-Whatsapp
+              </i></a>
+          </li>
+        </ul>
+      </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+  <script >
+    document.addEventListener('DOMContentLoaded', () => {
+
+// Get all "navbar-burger" elements
+const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+// Check if there are any navbar burgers
+if ($navbarBurgers.length > 0) {
+
+  // Add a click event on each of them
+  $navbarBurgers.forEach( el => {
+    el.addEventListener('click', () => {
+
+      // Get the target from the "data-target" attribute
+      const target = el.dataset.target;
+      const $target = document.getElementById(target);
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      el.classList.toggle('is-active');
+      $target.classList.toggle('is-active');
+
+    });
+  });
+}
+
+});
+$(document).ready(function() {
+
+// Check for click events on the navbar burger icon
+$(".navbar-burger").click(function() {
+
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
+
+});
+});
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends 'formation/layout.html' %}
+{% block content %}
+
+<section class="hero is-medium is-link m-6">
+    <div class="hero-body has-text-centered">
+        <p class="title mb-6">
+            Bienvenue au centre de formation LE COMMANDANT BENIN
+        </p>
+        <p class="subtitle">
+            Vous êtes à notre site web officiel
+        </p>
+    </div>
+</section>
+
+<div class="columns is-multiline">
+    <div class="column is-12">
+        <h2 class="is-size-2 has-text-centered"> Les formations</h2>
+    </div>
+    {% for formation in topFormations  %}
+        
+   
+    <div class="column is-3">
+        <div class="box">
+            <figure class="image mb-4">
+                <img src="{{formation.thumbnail.url}}">
+            </figure>
+
+            <h3 class="is-size-4">{{ formation.name }}</h3>
+            <p class="is-size-6 has-text-grey">{{ formation.price }} <span class="ml-2">FCFA</span></p>
+
+            <a href="{% url 'formation-detail' formation.id %}" class="button is-link mt-4">View details</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

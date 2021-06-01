@@ -1,0 +1,31 @@
+{% extends 'formation/layout.html' %}
+{% block content %}
+    
+
+<div class="page-search">
+    <div class="columns is-multiline">
+        <div class="column is-12">
+            <h1 class="title">Recherches</h1>
+
+            <h2 class="is-size-5 has-text-grey">Therme de votre recherche: "{{ query }}"</h2>
+            {% for message in messages %}
+        <h3 class="subtitle"> {{message}}  </h3>
+        {% endfor %}
+              
+        {% for formation in formations  %}
+        <div class="column is-3">
+            <div class="box">
+                <figure class="image mb-4">
+                    <img src="{{formation.thumbnail.url}}">
+                </figure>
+    
+                <h3 class="is-size-4">{{ formation.name }}</h3>
+                <p class="is-size-6 has-text-grey">{{ formation.price }} <span class="ml-2">FCFA</span></p>
+    
+                <a href="{% url 'formation-detail' formation.id %}" class="button is-link mt-4">Plus...</a>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+</div>
+{% endblock  %}

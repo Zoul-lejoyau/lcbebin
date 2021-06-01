@@ -1,0 +1,44 @@
+{% extends 'formation/layout.html' %}
+{% block content%}
+
+<div class="columns is-multiline m-2">
+    <div class="column is-9">
+        <figure class="image mb-6">
+            <img src="{{formation.image.url}}">
+        </figure>
+
+        <h1 class="title">{{ formation.name }}</h1>
+
+        <p>{{ formation.description }}</p>
+    </div>
+
+    <div class="column is-3">
+        <h2 class="subtitle has-text-info">Information</h2>
+
+        <p><strong>Price: </strong>{{ formation.price }} FCFA</p>
+        <p>
+            Contactez-nous avec les infomations suivante pour l'inscription: nom du cours:{{ formation.name }} <br>
+         Infomations personelles: noms, pays, contacts 
+        </p>
+<hr>
+        <h3 class=" has-text-success has-text-centered">Contactez-nous</h3>
+        <div class="field has-text-centered m-2">
+            <label class="label">WhatsApp</label>
+            <div class="control">
+                <a href="https://wa.me/message/STICJKB4GYXJF1" target="blank">
+                    <i class="fab fa-whatsapp"> Goupe-Whatsapp </i>
+                </a>
+                <a href="tel: +22967883147" >
+                    <i class="fas fa-phone "> Appellez +229 67883347 </i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+{% endblock %}
